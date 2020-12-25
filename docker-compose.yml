@@ -1,4 +1,7 @@
 version: "3"
+networks:
+  laravel:
+  
 services:
   nginx:
     container_name: lara-nginx
@@ -9,6 +12,8 @@ services:
     volumes:
       - ./site.conf:/etc/nginx/conf.d/site.conf
       - .:/var/www/html
+    networks:
+      - laravel
   mysql:
     container_name: lara-mysql
     image: mariadb
@@ -19,14 +24,30 @@ services:
       MYSQL_USER: root
       MYSQL_PASSWORD: root
       MYSQL_ROOT_PASSWORD: root
+    networks:
+      - laravel
 
   redis:
-   container_name: lara-redis
-   image: redis
-   ports:
-     - "6379:6379"
+    container_name: lara-redis
+    image: redis
+    ports:
+      - "6379:6379"
+    networks:
+      - laravel
   metabase:
     container_name: lara-metabase
-#    image: metabase/metabase
-#    ports:
-#      - "3000:3000"
+    image: metabase/metabase
+    ports:
+      - "3000:3000"
+    networks:
+      - laravel
+  
+  php:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: php
+    volumes:
+      - .:/var/www/html
+    ports:
+      - "9000:9000"
