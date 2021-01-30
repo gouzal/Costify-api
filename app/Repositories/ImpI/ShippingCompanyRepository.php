@@ -1,10 +1,9 @@
 <?php
 namespace App\Repositories\ImpI;
 
-
-use App\Models\ShippingCompany;
-use App\Repositories\Interfaces\IShippingCompanyRepository;
 use Illuminate\Http\Request;
+use App\Repositories\Interfaces\IShippingCompanyRepository;
+use App\Models\ShippingCompany;
 
 class ShippingCompanyRepository implements IShippingCompanyRepository
 {
@@ -18,7 +17,7 @@ class ShippingCompanyRepository implements IShippingCompanyRepository
 
     public function all(Request $request)
     {
-        return $shippingCompany->all();
+        return $this->shippingCompany->all();
         // return $this->product::with(['product_medias' => function ($query) {
         //     $query->where('featured', true);
         // }])->with("product_variants")->paginate(8);

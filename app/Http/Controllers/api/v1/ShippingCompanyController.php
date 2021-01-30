@@ -1,8 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\api\v1;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Models\ShippingCompany;
+use App\Repositories\ImpI\ShippingCompanyRepository;
+use App\Repositories\Interfaces\IShippingCompanyRepository;
 
 class ShippingCompanyController extends Controller
 {
@@ -18,9 +22,9 @@ class ShippingCompanyController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return $this->iShippingCompanyRepository->all();
+        return $this->iShippingCompanyRepository->all($request);
     }
 
     /**
