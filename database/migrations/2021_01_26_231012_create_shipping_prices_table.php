@@ -20,7 +20,7 @@ class CreateShippingPricesTable extends Migration
             $table->unsignedBigInteger("to_country_id");
             $table->integer("price");
             $table->timestamps();
-
+            
             $table->foreign('company_id')->references('id')->on('shipping_companies');
             $table->foreign('from_country_id')->references('id')->on('countries');
             $table->foreign('to_country_id')->references('id')->on('countries');
