@@ -7,15 +7,24 @@ use App\Http\Controllers\Controller;
 use App\Models\ShippingCompany;
 use App\Repositories\ImpI\ShippingCompanyRepository;
 use App\Repositories\Interfaces\IShippingCompanyRepository;
+use App\Services\ShippingCompanyService;
 
 class ShippingCompanyController extends Controller
 {
-    protected IShippingCompanyRepository $iShippingCompanyRepository;
+
+    protected  ShippingCompanyService $shippingCompanyService;
 
     public function __construct(ShippingCompany $shippingCompany)
     {
-        $this->iShippingCompanyRepository = new ShippingCompanyRepository($shippingCompany);
+        $this->shippingCompanyService = new ShippingCompanyService($shippingCompany);
     }
+
+    // protected IShippingCompanyRepository $iShippingCompanyRepository;
+
+    // public function __construct(ShippingCompany $shippingCompany)
+    // {
+    //     $this->iShippingCompanyRepository = new ShippingCompanyRepository($shippingCompany);
+    // }
 
     /**
      * Display a listing of the resource.
@@ -24,7 +33,7 @@ class ShippingCompanyController extends Controller
      */
     public function index(Request $request)
     {
-        return $this->iShippingCompanyRepository->all($request);
+        return $this->shippingCompanyService->all($request);
     }
 
     /**
