@@ -6,6 +6,13 @@ use Illuminate\Http\Request;
 
 class ShippingCompanyController extends Controller
 {
+    protected IShippingCompanyRepository $iShippingCompanyRepository;
+
+    public function __construct(ShippingCompany $shippingCompany)
+    {
+        $this->iShippingCompanyRepository = new ShippingCompanyRepository($shippingCompany);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -13,7 +20,7 @@ class ShippingCompanyController extends Controller
      */
     public function index()
     {
-        //
+        return $this->iShippingCompanyRepository->all();
     }
 
     /**
