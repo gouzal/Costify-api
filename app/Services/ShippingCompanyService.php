@@ -5,7 +5,7 @@ use Illuminate\Http\Request;
 use App\Models\ShippingCompany;
 use App\Repositories\ImpI\ShippingCompanyRepository;
 use App\Repositories\Interfaces\IShippingCompanyRepository;
-
+use App\Http\Resources\ShippingCompanyResource;
 class ShippingCompanyService {
 
     protected IShippingCompanyRepository $iShippingCompanyRepository;
@@ -17,7 +17,8 @@ class ShippingCompanyService {
 
     public function all(Request $request)
     {
-        return $this->iShippingCompanyRepository->all($request);
+      //  return ShippingCompanyCollection::collection($this->iShippingCompanyRepository->all($request));
+        return  ShippingCompanyResource::collection($this->iShippingCompanyRepository->all($request));
     }
 
 }
